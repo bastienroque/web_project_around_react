@@ -46,8 +46,7 @@ function Main() {
   }
 
   function handleRemoveCard(cardId) {
-    console.log("Remove", cardId);
-    const filteredCards = cards.filter((card) => card._id !== cardId);
+    const filteredCards = cardsInfo.filter((card) => card._id !== cardId);
     setCardsInfo(filteredCards);
   }
 
