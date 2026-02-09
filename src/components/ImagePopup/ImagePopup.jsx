@@ -1,6 +1,8 @@
 export default function ImagePopup({ card, onClose }) {
   return (
-    <div className={`popup popup_type_image ${card !== null ? 'popup_opened' : ''}`}>
+    <div
+      className={`popup popup_type_image ${card !== null ? "popup_opened" : ""}`}
+    >
       <div className="popup__content popup__content_content_image">
         <button
           type="button"
