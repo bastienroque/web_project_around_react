@@ -1,6 +1,5 @@
-import { useState } from "react";
-import "../../index.css";
-import logo from "../../../images/logo.svg";
+import "../index.css";
+import logo from "../../images/logo.svg";
 
 function Header() {
   return (

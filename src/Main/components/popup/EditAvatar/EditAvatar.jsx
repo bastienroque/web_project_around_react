@@ -1,4 +1,16 @@
-export default function EditAvatar() {
+import { useRef } from "react";
+
+export default function EditAvatar({ onUpdateAvatar }) {
+  const avatarInputRef = useRef();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    onUpdateAvatar({
+      avatar: avatarInputRef.current.value,
+    });
+  }
+
   return (
     <div className="popup" id="avatar-popup">
       <div className="popup__content">
@@ -6,6 +18,7 @@ export default function EditAvatar() {
           aria-label="Fechar pop-up"
           className="popup__close"
           type="button"
+          onClick={handleSubmit}
         ></button>
         <h3 className="popup__title">Atualizar avatar</h3>
         <form className="popup__form" id="avatar-form" name="avatarForm">
