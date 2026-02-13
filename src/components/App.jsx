@@ -2,7 +2,7 @@ import "../index.css";
 import Header from "./Header/Header.jsx";
 import Main from "./Main/Main.jsx";
 import Footer from "./Footer/Footer.jsx";
-import Popup from "./popup/Popup.jsx";
+import Popup from "./Main/Popup.jsx";
 import { useState, useEffect } from "react";
 import { api } from "../utils/api.js";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
