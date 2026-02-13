@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import "../index.css";
-import NewCard from "../components/popup/NewCard/NewCard.jsx";
-import EditProfile from "../components/popup/EditProfile/EditProfile.jsx";
-import EditAvatar from "../components/popup/EditAvatar/EditAvatar.jsx";
+import "../../index.css";
+import NewCard from "../popup/NewCard/NewCard.jsx";
+import EditProfile from "../popup/EditProfile/EditProfile.jsx";
+import EditAvatar from "../popup/EditAvatar/EditAvatar.jsx";
 import Card from "../Card/Card.jsx";
-import CurrentUserContext from "../contexts/CurrentUserContext.js";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
 function Main({ onOpenPopup, cards, onCardLike, onCardDelete }) {
   const currentUser = useContext(CurrentUserContext);
