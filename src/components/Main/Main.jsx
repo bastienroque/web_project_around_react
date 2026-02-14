@@ -5,6 +5,7 @@ import EditProfile from "./popup/EditProfile/EditProfile.jsx";
 import EditAvatar from "./popup/EditAvatar/EditAvatar.jsx";
 import Card from "../Card/Card.jsx";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
+import Popup from "./Popup.jsx";
 
 function Main({ onOpenPopup, cards, onCardLike, onCardDelete }) {
   const currentUser = useContext(CurrentUserContext);
