@@ -1,10 +1,14 @@
 export default function Card(props) {
   const { name, link, isLiked } = props.card;
-  const { card, handleRemove, onCardLike } = props;
+  const { card, onCardDelete, onCardLike } = props;
 
   const cardLikeButtonClassName = `card__like-button ${
     isLiked ? "card__like-button_is-active" : ""
   }`;
+
+  function handleRemoveClick() {
+    onCardDelete(card._id);
+  }
 
   function handleLikeClick() {
     onCardLike(card);
@@ -17,7 +21,7 @@ export default function Card(props) {
         aria-label="Excluir cartão"
         className="card__delete-button"
         type="button"
-        onClick={() => handleRemove(props.card._id)}
+        onClick={handleRemoveClick}
       ></button>
       <div className="card__description">
         <h2 className="card__title">{name}</h2>

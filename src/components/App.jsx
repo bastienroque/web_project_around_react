@@ -1,10 +1,10 @@
 import "../index.css";
+import { useState, useEffect } from "react";
+import { api } from "../utils/api.js";
 import Header from "./Header/Header.jsx";
 import Main from "./Main/Main.jsx";
 import Footer from "./Footer/Footer.jsx";
 import Popup from "./Main/components/popup/Popup.jsx";
-import { useState, useEffect } from "react";
-import { api } from "../utils/api.js";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 
 function App() {
@@ -67,6 +67,18 @@ function App() {
     })();
   };
 
+  const handleUpdateNewCard = (data) => {
+    (async () => {
+      await api
+        .createCard(data)
+        .then((newData) => {
+          addCard((state) => [newData, ...state]);
+          handleClosePopup();
+        })
+        .catch((error) => console.error(error));
+    })();
+  };
+
   async function handleCardLike(card) {
     const isLiked = card.isLiked;
 
@@ -110,6 +122,7 @@ function App() {
           cards={cards}
           onCardLike={handleCardLike}
           onCardDelete={handleCardDelete}
+          onCardAdd={handleUpdateNewCard}
         />
         <Footer />
       </div>

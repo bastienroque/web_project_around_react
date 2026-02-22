@@ -1,15 +1,16 @@
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import Card from "./components/Card/Card";
-import Popup from "./components/Popup/Popup";
-import EditProfile from "./components/Popup/EditProfile/EditProfile";
-import EditAvatar from "./components/Popup/EditAvatar/EditAvatar";
-import NewCard from "./components/Popup/NewCard/NewCard";
+import Popup from "./components/popup/Popup";
+import EditProfile from "./components/popup/EditProfile/EditProfile";
+import EditAvatar from "./components/popup/EditAvatar/EditAvatar";
+import NewCard from "./components/popup/NewCard/NewCard";
 
 export default function Main({
   cards,
   onCardLike,
   onCardDelete,
+  onCardAdd,
   onOpenPopup,
   onClosePopup,
   popup,
@@ -70,6 +71,7 @@ export default function Main({
               card={card}
               onCardLike={onCardLike}
               onCardDelete={onCardDelete}
+              onCardAdd={onCardAdd}
             />
           ))}
         </ul>
