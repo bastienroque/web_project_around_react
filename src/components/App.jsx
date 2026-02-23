@@ -58,9 +58,9 @@ function App() {
   const handleUpdateAvatar = (data) => {
     (async () => {
       await api
-        .setUserAvatar(data)
+        .updateAvatar(data)
         .then((newData) => {
-          updateAvatar(newData);
+          setCurrentUser(newData);
           handleClosePopup();
         })
         .catch((error) => console.error(error));
@@ -70,27 +70,14 @@ function App() {
   const handleUpdateNewCard = (data) => {
     (async () => {
       await api
-        .createCard(data)
+        .addCard(data)
         .then((newData) => {
-          addCard((state) => [newData, ...state]);
+          setCards((state) => [newData, ...state]);
           handleClosePopup();
         })
         .catch((error) => console.error(error));
     })();
   };
-
-  async function handleCardLike(card) {
-    const isLiked = card.isLiked;
-
-    await api
-      .likeCard(card._id, !isLiked)
-      .then((newCard) => {
-        setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c)),
-        );
-      })
-      .catch(console.error);
-  }
 
   function handleCardDelete(cardId) {
     api

@@ -7,7 +7,7 @@ export default function Card(props) {
   }`;
 
   function handleRemoveClick() {
-    onCardDelete(card._id);
+    onCardDelete(card);
   }
 
   function handleLikeClick() {

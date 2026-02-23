@@ -5,6 +5,7 @@ import Popup from "./components/popup/Popup";
 import EditProfile from "./components/popup/EditProfile/EditProfile";
 import EditAvatar from "./components/popup/EditAvatar/EditAvatar";
 import NewCard from "./components/popup/NewCard/NewCard";
+import RemoveCard from "./components/popup/RemoveCard/RemoveCard";
 
 export default function Main({
   cards,
@@ -24,13 +25,29 @@ export default function Main({
 
   const editAvatarPopup = {
     title: "Alterar a foto do perfil",
-    children: <EditAvatar />,
+    children: <EditAvatar onClose={onClosePopup} />,
   };
 
   const newCardPopup = {
     title: "Novo local",
-    children: <NewCard />,
+    children: <NewCard onClose={onClosePopup} onAddCard={onCardAdd} />,
   };
+
+  function handleCardDelete(card) {
+    const removeCardPopup = {
+      title: "Tem certeza?",
+      children: (
+        <RemoveCard
+          onClose={onClosePopup}
+          onConfirm={() => {
+            onCardDelete(card._id);
+            onClosePopup();
+          }}
+        />
+      ),
+    };
+    onOpenPopup(removeCardPopup);
+  }
 
   return (
     <main className="content">
@@ -70,7 +87,7 @@ export default function Main({
               key={card._id}
               card={card}
               onCardLike={onCardLike}
-              onCardDelete={onCardDelete}
+              onCardDelete={handleCardDelete}
               onCardAdd={onCardAdd}
             />
           ))}

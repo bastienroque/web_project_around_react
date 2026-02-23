@@ -1,4 +1,26 @@
-export default function NewCard() {
+import { useState } from "react";
+
+export default function NewCard({ onClose, onAddCard }) {
+  const [title, setTitle] = useState("");
+  const [link, setLink] = useState("");
+
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
+  };
+
+  const handleLinkChange = (event) => {
+    setLink(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    onAddCard({
+      name: title,
+      link: link,
+    });
+  };
+
   return (
     <div className="popup" id="new-card-popup">
       <div className="popup__content">
@@ -6,9 +28,15 @@ export default function NewCard() {
           aria-label="Fechar pop-up"
           className="popup__close"
           type="button"
+          onClick={onClose}
         ></button>
         <h3 className="popup__title">Novo local</h3>
-        <form className="popup__form" id="new-card-form" name="cardForm">
+        <form
+          className="popup__form"
+          id="new-card-form"
+          name="cardForm"
+          onSubmit={handleSubmit}
+        >
           <input
             className="popup__input popup__input_type_card-name"
             name="place-name"
@@ -18,6 +46,8 @@ export default function NewCard() {
             maxlength="30"
             required
             type="text"
+            value={title}
+            onChange={handleTitleChange}
           />
           <span className="place-name-input-error popup__input-error">
             Este campo é obrigatório.
@@ -29,6 +59,8 @@ export default function NewCard() {
             placeholder="Link de Imagem"
             required
             type="url"
+            value={link}
+            onChange={handleLinkChange}
           />
           <span className="link-input-error popup__input-error">
             Este campo é obrigatório.
