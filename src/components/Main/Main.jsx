@@ -1,7 +1,8 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import Card from "./components/Card/Card";
 import Popup from "./components/popup/Popup";
+import ImagePopup from "./components/popup/ImagePopup/ImagePopup";
 import EditProfile from "./components/popup/EditProfile/EditProfile";
 import EditAvatar from "./components/popup/EditAvatar/EditAvatar";
 import NewCard from "./components/popup/NewCard/NewCard";
@@ -17,6 +18,15 @@ export default function Main({
   popup,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
+  const [selectedCard, setSelectedCard] = useState(null);
+
+  function handleCardClick(card) {
+    setSelectedCard(card);
+  }
+
+  function closeImagePopup() {
+    setSelectedCard(null);
+  }
 
   const editProfilePopup = {
     title: "Editar perfil",
@@ -88,6 +98,7 @@ export default function Main({
               card={card}
               onCardLike={onCardLike}
               onCardDelete={handleCardDelete}
+              onCardClick={handleCardClick}
               onCardAdd={onCardAdd}
             />
           ))}
@@ -98,6 +109,10 @@ export default function Main({
         <Popup onClose={onClosePopup} title={popup.title}>
           {popup.children}
         </Popup>
+      )}
+
+      {selectedCard && (
+        <ImagePopup card={selectedCard} onClose={closeImagePopup} />
       )}
     </main>
   );
